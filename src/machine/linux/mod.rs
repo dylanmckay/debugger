@@ -1,5 +1,5 @@
 use Process;
-use machine::{Pointer, MachineProcess};
+use machine::{Pointer, MachineProcess, MachineThread};
 use Result;
 
 use libc;
@@ -43,6 +43,10 @@ impl MachineProcess for LinuxProcess
     }
 
     fn set_instruction_pointer(&mut self, _pointer: Pointer) -> Result<()> {
+        unimplemented!();
+    }
+
+    fn threads(&self) -> Result<::std::vec::IntoIter<Box<MachineThread>>> {
         unimplemented!();
     }
 }

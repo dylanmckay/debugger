@@ -10,5 +10,9 @@ fn main() {
         },
     };
 
+    let threads: Vec<_> = process.threads().unwrap().collect();
+    println!("threads: {:#?}", threads);
+
+
     println!("hello");
 }

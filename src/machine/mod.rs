@@ -45,9 +45,15 @@ pub trait MachineProcess : Process
 {
     fn instruction_pointer(&self) -> Pointer;
     fn set_instruction_pointer(&mut self, ip: Pointer) -> Result<()>;
+
+    fn threads(&self) -> Result<::std::vec::IntoIter<Box<MachineThread>>>;
 }
 
-pub fn attach_to(pid: &str) -> Result<Box<Process>> {
+pub trait MachineThread : ::std::fmt::Debug
+{
+}
+
+pub fn attach_to(pid: &str) -> Result<Box<MachineProcess>> {
     let pid = match pid.parse() {
         Ok(a) => a,
         Err(..) => {
@@ -55,6 +61,6 @@ pub fn attach_to(pid: &str) -> Result<Box<Process>> {
         },
     };
 
-    linux::LinuxProcess::attach(pid).map(|p| Box::new(p) as Box<Process>)
+    linux::LinuxProcess::attach(pid).map(|p| Box::new(p) as Box<MachineProcess>)
 }
 
