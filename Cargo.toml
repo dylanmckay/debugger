@@ -5,6 +5,7 @@ authors = ["Dylan McKay <dylan.mckay@powershop.co.nz>"]
 
 [dependencies]
 libc = "0.2.11"
+mach = "0.0.5"
 
 [[bin]]
 name = "debug"

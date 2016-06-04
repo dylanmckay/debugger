@@ -2,6 +2,12 @@ use Result;
 use Process;
 use std;
 
+#[cfg(target_os = "linux")]
+type TargetProcess = linux::LinuxProcess;
+#[cfg(target_os = "macos")]
+type TargetProcess = darwin::DarwinProcess;
+
+pub mod darwin;
 pub mod linux;
 
 #[derive(Clone,Debug,PartialEq,Eq)]

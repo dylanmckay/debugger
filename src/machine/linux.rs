@@ -49,6 +49,12 @@ impl MachineProcess for LinuxProcess
 
 impl Process for LinuxProcess
 {
+    fn suspend(&mut self) -> Result<()> {
+        unimplemented!();
+    }
 
+    fn resume(&mut self) -> Result<()> {
+        unimplemented!();
+    }
 }
 
